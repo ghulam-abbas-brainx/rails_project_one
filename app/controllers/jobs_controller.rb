@@ -40,7 +40,11 @@ class JobsController < ApplicationController
     if !check_session?
       redirect_to '/users/index'
     end
+    debugger
     @job = Job.new(job_params)
+
+    #Get User_id from session and store it
+    @job.user_id = session["id"]
 
     respond_to do |format|
       if @job.save
